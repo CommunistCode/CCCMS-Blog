@@ -1,0 +1,186 @@
+<?php
+
+	require_once($fullPath.'/classes/dbConn.class.php');
+
+	class blogTools {
+
+		public function newPost($title, $body) {
+
+			$db = new dbConn();
+
+			$title = addslashes($title);
+			$body = addslashes($body);
+
+			$admin = unserialize($_SESSION['admin']);
+
+			if($db->insert(	"blog",
+											"adminID,dateCreated,title,body",
+											"".$admin->getID().",".time().",'".$title."','".$body."'",
+											0
+										)) {
+
+				return "<p>New post was created sucessfully!</p>";
+
+			}
+			else {
+
+				return "<p>Post could not be created! ".$db->mysqli->error."</p>";
+
+			}
+
+		}
+
+		public function getBlogPost($blogPostID) {
+
+			$db = new dbConn();
+
+			$result = $db->selectWhere("adminUsers.adminUser, title, body, dateCreated","adminUsers, blog", "blogPostID=".$blogPostID." and blog.adminID = adminUsers.adminID",0);
+
+			$row = $result->fetch_assoc();
+			
+			return $row;
+
+		}
+
+		public function renderLatestPosts($limit) {
+
+			$db = new dbConn();
+
+			$latestPosts = $db->mysqli->query("SELECT blogPostID FROM blog ORDER BY dateCreated DESC LIMIT ".$limit);	
+		
+			if(!$latestPosts) {
+
+				echo("No blog posts created yet!<br />");
+
+			}
+
+			else {
+
+				while ($row = $latestPosts->fetch_assoc()) {
+
+					$blogPost = $this->getBlogPost($row['blogPostID']);
+
+					echo($this->renderBlogPost($blogPost));
+
+				}
+
+			}
+
+		}
+
+		public function renderBlogPost($blogArray) {
+
+			$pageTools = new pageTools();
+
+			$dateCreated = date("F j, Y (H:m)", $blogArray['dateCreated']); 
+		
+			$blogBody = stripslashes($blogArray['body']);
+			$blogBody = $pageTools->matchTags($blogBody);
+
+			$string = <<<EOD
+
+			<div id='blogPost'>
+			  <table width=730>
+			    <tr>
+			      <td><h1><strong>{$blogArray['title']}</strong></h1></td>
+			      <td align='right'><h2><i>Posted by:</i> <strong>{$blogArray['adminUser']}</strong></h2></td>
+			    </tr>
+					<tr>
+						<td><h3>{$dateCreated}<h3></td>
+					</tr>
+				  <tr>
+				    <td colspan=2><p>{$blogBody}</p></td>
+				  </tr>
+				</table>
+			</div>
+
+EOD;
+			
+			echo($string);
+
+		}
+
+		public function renderDateLinks($numMonths) {
+
+			$db = new dbConn();
+
+			$nextMonth = date("n",time()) + 1;
+			$currentYear = date("Y",time());
+
+			for($i=1; $i<=$numMonths; $i++) {
+	
+				$monthTime = mktime(0,0,0,$nextMonth,1,$currentYear);
+				$originalMonth = date("F", mktime(0,0,0,($nextMonth-1),1,$currentYear));
+				
+				if ($nextMonth == 1) {
+
+					$nextMonth = 12;
+					$currentYear--;
+
+				} else {
+
+					$nextMonth--;
+
+				}
+
+				$previousMonth = mktime(0,0,0,$nextMonth,1,$currentYear);
+
+				$result = $db->selectWhere('COUNT(*) as "postCount"','blog','dateCreated > '.$previousMonth.' AND dateCreated <= '.$monthTime.'',0);
+			
+				$row = $result->fetch_assoc();
+
+				echo("<a href=''>".$originalMonth." (".$row['postCount'].")</a><br />");
+
+			}
+
+		}
+
+		public function renderPostList() {
+
+			$db = new dbConn();
+
+	    $result = $db->select("blogPostID, title","blog", 0);
+
+	    $render = "<select name='postSelection'>\n";
+
+	    while ($resultArray=$result->fetch_array(MYSQLI_ASSOC)) {
+
+	      $render .= "<option value='".$resultArray['blogPostID']."'>".$resultArray['title']."</option>\n";
+
+	    }
+
+	    $render .= "</select>\n";
+
+	    return $render;
+
+		}
+
+		public function getPostContent($postID) {
+
+			$db = new dbConn();
+
+			$result = $db->selectWhere("title,body","blog","blogPostID=".$postID."",0);
+
+			return $result->fetch_assoc();
+
+		}
+
+		public function updatePost($postID,$title,$body) {
+
+			$db = new dbConn();
+
+			return $db->update("blog","title='".$title."',body='".$body."',dateUpdated=".time()."","blogPostID=".$postID."",0);
+
+		}
+
+		public function deletePost($postID) {
+
+			$db = new dbConn();
+
+			return $db->delete("blog","blogPostID=".$postID."",0);
+
+		}
+
+	}
+
+?>
