@@ -38,7 +38,7 @@
 
 			$db = new dbConn();
 
-			if ($db->checkExists("version","modules","blog")) {
+			if ($db->checkExists("version","module","blog")) {
 
 				echo("version already populated<br />");
 
