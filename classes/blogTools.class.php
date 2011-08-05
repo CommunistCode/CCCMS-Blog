@@ -50,19 +50,23 @@
 		
 			if(!$latestPosts) {
 
-				echo("No blog posts created yet!<br />");
+				return "No blog posts created yet!<br />";
 
 			}
 
 			else {
 
+				$output = "";	
+
 				while ($row = $latestPosts->fetch_assoc()) {
 
 					$blogPost = $this->getBlogPost($row['blogPostID']);
 
-					echo($this->renderBlogPost($blogPost));
+					$output .= $this->renderBlogPost($blogPost);
 
 				}
+
+				return $output;
 
 			}
 
@@ -96,7 +100,7 @@
 
 EOD;
 			
-			echo($string);
+			return $string;
 
 		}
 
