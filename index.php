@@ -7,7 +7,6 @@
 
 	$blogTools = new blogTools();
 
-	$title = "CCCMS";
 	$content = $blogTools->renderLatestPosts(10); 
 
 	require_once("includes/template.inc.php");
