@@ -173,6 +173,8 @@ EOD;
 
 			$db = new dbConn();
 
+			$body = addslashes($body);
+
 			return $db->update("blog","title='".$title."',body='".$body."',dateUpdated=".time()."","blogPostID=".$postID."",0);
 
 		}
