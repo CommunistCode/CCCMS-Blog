@@ -24,31 +24,44 @@
 			<div id="body">
 				<h1>New Blog Post</h1>
 				<?php
+
+				if (isset($_POST['title'])) {
+			
+					$title = htmlspecialchars($_POST['title'], ENT_QUOTES);
+			
+				}
+
+				if (isset($_POST['text'])) {
+
+					$text = htmlspecialchars($_POST['text'], ENT_QUOTES);
+
+				}
+				
 				if (isset($_POST['newPost'])) {
-					
+
 					echo("<p><strong>Preview</strong></p>\n");
 					echo("<table>\n");
 					echo("<tr>\n");
-					echo("<td>".$_POST['title']."</td>\n");
+					echo("<td>".$title."</td>\n");
 					echo("</tr>\n");
 					echo("<tr>\n");
-					echo("<td>".$_POST['text']."</td>\n");
+					echo("<td>".$text."</td>\n");
 					echo("</tr>\n");
 					echo("</table>\n");
 					echo("<form method='post' action='newPost.php' name='editPost'>\n");
-					echo("<input type='hidden' name='title' value='".$_POST['title']."'/>\n");
-					echo("<input type='hidden' name='text' value='".$_POST['text']."'/>\n");
+					echo("<input type='hidden' name='title' value='".$title."'/>\n");
+					echo("<input type='hidden' name='text' value='".$text."'/>\n");
 					echo("<br/><br/><input type='submit' name='editPost' id='editPost' value='Edit' />\n");
 					echo("</form>\n");
 					echo("<form method='post' action='newPost.php' name='publishPage'>\n");
-					echo("<input type='hidden' name='title' value='".$_POST['title']."'/>\n");
-					echo("<input type='hidden' name='text' value='".$_POST['text']."'/>\n");
+					echo("<input type='hidden' name='title' value='".$title."'/>\n");
+					echo("<input type='hidden' name='text' value='".$text."'/>\n");
 					echo("<input type='submit' name='publishPost' id='publishPost' value='Publish' />\n");
 					echo("</form>\n");
 				}
 				else if (isset($_POST['publishPost'])) {
 					
-					echo($blogTools->newPost($_POST['title'],$_POST['text']));
+					echo($blogTools->newPost($title,$text));
 					
 				}
 				else if (isset($_POST['editPost'])) {
@@ -60,11 +73,11 @@
 					echo("<table>\n");
 					echo("<tr>\n");
 					echo("<td width='100'>Title</td>\n");
-					echo("<td><input type='text' name='title' value='".$_POST['title']."' size='61'/></td>\n");
+					echo("<td><input type='text' name='title' value='".$title."' size='61'/></td>\n");
 					echo("</tr>\n");
 					echo("<tr>\n");
 					echo("<td>Text</td>\n");
-					echo("<td><textarea rows='30' cols='70' name='text'>".$_POST['text']."</textarea></td>\n");
+					echo("<td><textarea rows='30' cols='70' name='text'>".$text."</textarea></td>\n");
 					echo("</tr>\n");
 					echo("<tr>\n");
 					echo("<td></td>\n");
@@ -114,4 +127,3 @@
 		</div>
 	</body>
 </html>
-
