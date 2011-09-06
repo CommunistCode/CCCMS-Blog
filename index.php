@@ -9,6 +9,6 @@
 
 	$content = $blogTools->renderLatestPosts(10); 
 
-	require_once("includes/template.inc.php");
+	require_once($fullPath."/blog/themes/".$pageTools->getTheme("base")."/templates/template.inc.php");
 
 ?>

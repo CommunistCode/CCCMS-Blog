@@ -6,50 +6,54 @@
   margin-top: 0px;
   margin-bottom: 0px;
   width: 780px;
-  background: red;
+  background: white;
 }
 
 .blogLinks {
   float: left;
   padding: 10px 10px 10px 10px;
   width: 110px;
-  background: gold;
+  background: #6ac857;
 }
 
 #blogPost {
 	padding: 10px 0px 10px 10px;
-	margin: 0px 0px 20px 0px;
+	margin: 0px 0px 10px 0px;
 	width: 750px;
-	background: grey;
+	background: #EDEDED;
+	border: 1px solid grey;
 }
 
 /* Blog title */
 #blogPost h1 {
-	font-size: 10pt;
-	padding: 0;
-	margin: 0;
+	font-size: 15px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
 }
 
 /* username */
 #blogPost h2 {
-	font-size: 8pt;
+	font-size: 10px;
 	font-weight: normal;
-	padding: 0;
-	margin: 0;
+	padding: 0px;
+	margin: 0px;
 }
 
 /* date */
 #blogPost h3 {
 	font-size: 8pt;
 	font-style: italic;
-	padding: 0;
-	margin: 0;
+	padding: 0px;
+	margin: 0px;
 }
 
 /* text */
 #blogPost p {
 	background: white;
+	text-align: justify;
 	font-size: 10pt;
 	padding: 10px;
 	margin: 10px 0px 0px 0px;
+	border: 1px solid grey;
 }
