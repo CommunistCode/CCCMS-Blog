@@ -4,8 +4,8 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<title><?php echo($title); ?> : Blog</title>
-		<link href="../themes/default/stylesheets/base.css" rel="stylesheet" type="text/css" />
-		<link href="themes/default/stylesheets/blogStyle.css" rel="stylesheet" type"text/css" />
+		<link href="../themes/<?php echo($pageTools->getTheme("base")); ?>/stylesheets/base.css" rel="stylesheet" type="text/css" />
+		<link href="themes/<?php echo($pageTools->getTheme("blog")); ?>/stylesheets/blogStyle.css" rel="stylesheet" type"text/css" />
 	</head>
 	<body>
 		<div id="mainContainer">
