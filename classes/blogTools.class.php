@@ -87,7 +87,7 @@
 			  <table width=730>
 			    <tr>
 			      <td><h1><strong>{$blogArray['title']}</strong></h1></td>
-			      <td align='right'><h2><i>Posted by:</i> <strong>{$blogArray['adminUser']}</strong></h2></td>
+			      <td><h2><i>Posted by:</i> <strong>{$blogArray['adminUser']}</strong></h2></td>
 			    </tr>
 					<tr>
 						<td><h3>{$dateCreated}<h3></td>
