@@ -83,12 +83,19 @@
 			if ($limit != NULL) {
 
 				$blogLength = strlen($blogBody);
+				$blogBodyOriginal = $blogBody;
 
 				$blogBody = substr($blogBody, 0 ,$limit);
 
 				if ($blogLength > $limit) {
+			
+					if (substr($blogBodyOriginal,$limit,1) == " ") {
 
-					$blogBody .= " <a href='blogPost.php?blogPostID=".$blogArray['blogPostID']."'>..... </a>";
+						$blogBody .= " ";
+
+					}
+
+					$blogBody .= "<a href='blogPost.php?blogPostID=".$blogArray['blogPostID']."'>..... </a>";
 
 				}
 
