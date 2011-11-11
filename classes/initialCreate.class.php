@@ -50,10 +50,12 @@
 
 					INSERT INTO version (
 						module,
-						version
+						version,
+						theme
 					) values (
 						'blog',
-						'1.0.0'
+						'1.0.0',
+						'default'
 					); ";
 
 				if ($db->mysqli->query($query)) {

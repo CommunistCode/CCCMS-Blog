@@ -32,11 +32,23 @@
 	
 				<div class="blogBody">
 		
-					<h1>Blog Posts</h1>	
+					<h1>
+						<?php echo($heading); ?>
+					</h1>	
 
 					<?php 
 	
-						echo($content);					
+						if (isset($content)) {
+								
+								echo($content);					
+
+						}
+
+						if (isset($include)) {
+
+							include($include);
+
+						}
 
 					?>
 

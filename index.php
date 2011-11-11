@@ -7,6 +7,7 @@
 
 	$blogTools = new blogTools();
 
+	$heading = "Recent Blog Posts";
 	$content = $blogTools->renderLatestPosts(10); 
 
 	require_once($fullPath."/blog/themes/".$pageTools->getTheme("blog")."/templates/template.inc.php");

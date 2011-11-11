@@ -34,7 +34,7 @@
 
 			$db = new dbConn();
 
-			$result = $db->selectWhere("adminUsers.adminUser, title, body, dateCreated","adminUsers, blog", "blogPostID=".$blogPostID." and blog.adminID = adminUsers.adminID",0);
+			$result = $db->selectWhere("adminUsers.adminUser, title, body, dateCreated, blog.blogPostID","adminUsers, blog", "blogPostID=".$blogPostID." and blog.adminID = adminUsers.adminID",0);
 
 			$row = $result->fetch_assoc();
 			
@@ -42,7 +42,7 @@
 
 		}
 
-		public function renderLatestPosts($limit) {
+		public function renderLatestPosts($limit, $charLimit = 200) {
 
 			$db = new dbConn();
 
@@ -62,7 +62,7 @@
 
 					$blogPost = $this->getBlogPost($row['blogPostID']);
 
-					$output .= $this->renderBlogPost($blogPost);
+					$output .= $this->renderBlogPost($blogPost, $charLimit);
 
 				}
 
@@ -72,7 +72,7 @@
 
 		}
 
-		public function renderBlogPost($blogArray) {
+		public function renderBlogPost($blogArray, $limit = NULL) {
 
 			$pageTools = new pageTools();
 
@@ -80,13 +80,27 @@
 		
 			$blogBody = stripslashes($blogArray['body']);
 			$blogBody = $pageTools->matchTags($blogBody);
+			
+			if ($limit != NULL) {
+
+				$blogLength = strlen($blogBody);
+
+				$blogBody = substr($blogBody, 0 ,$limit);
+
+				if ($blogLength > $limit) {
+
+					$blogBody .= " <a href='blogPost.php?blogPostID=".$blogArray['blogPostID']."'>..... </a>";
+
+				}
+
+			}
 
 			$string = <<<EOD
 
 			<div id='blogPost'>
 			  <table width=730>
 			    <tr>
-			      <td><h1><strong>{$blogArray['title']}</strong></h1></td>
+			      <td><h1><a href='blogPost.php?blogPostID={$blogArray['blogPostID']}'>{$blogArray['title']}</a></h1></td>
 			      <td><h2><i>Posted by:</i> <strong>{$blogArray['adminUser']}</strong></h2></td>
 			    </tr>
 					<tr>
