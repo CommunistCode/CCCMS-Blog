@@ -79,7 +79,6 @@
 			$dateCreated = date("F j, Y (H:m)", $blogArray['dateCreated']); 
 		
 			$blogBody = stripslashes($blogArray['body']);
-			$blogBody = $pageTools->matchTags($blogBody);
 			
 			if ($limit != NULL) {
 
@@ -94,6 +93,8 @@
 				}
 
 			}
+
+			$blogBody = $pageTools->matchTags($blogBody);
 
 			$string = <<<EOD
 
