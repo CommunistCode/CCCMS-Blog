@@ -115,7 +115,7 @@
 						<td><h3>{$dateCreated}<h3></td>
 					</tr>
 				  <tr>
-				    <td colspan=2><p>{$blogBody}</p></td>
+				    <td colspan=2>{$blogBody}</td>
 				  </tr>
 				</table>
 			</div>
