@@ -50,7 +50,7 @@ padding: 0px 10px 0px 0px;
 }
 
 /* text */
-#blogPost p {
+#blogPost .blogText {
 	background: white;
 	text-align: justify;
 	font-size: 10pt;
