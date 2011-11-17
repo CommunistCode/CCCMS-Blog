@@ -133,6 +133,8 @@ EOD;
 			$nextMonth = date("n",time()) + 1;
 			$currentYear = date("Y",time());
 
+			$dateLinksHTML = "<ul>";
+
 			for($i=1; $i<=$numMonths; $i++) {
 	
 				$monthTime = mktime(0,0,0,$nextMonth,1,$currentYear);
@@ -155,9 +157,13 @@ EOD;
 			
 				$row = $result->fetch_assoc();
 
-				echo("<a href=''>".$originalMonth." (".$row['postCount'].")</a><br />");
+				$dateLinksHTML .= "<li><a href=''>".$originalMonth." (".$row['postCount'].")</a></li>";
 
 			}
+
+			$dateLinksHTML .= "</ul>";
+
+			echo($dateLinksHTML);
 
 		}
 
