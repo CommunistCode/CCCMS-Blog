@@ -95,7 +95,7 @@
 
 					}
 
-					$blogBody .= "<a href='blogPost.php?blogPostID=".$blogArray['blogPostID']."'>..... </a>";
+					$blogBody .= "<a href='blogPost.php?blogPostID=".$blogArray['blogPostID']."'>&hellip; </a>";
 
 				}
 
