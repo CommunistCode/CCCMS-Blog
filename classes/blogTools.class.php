@@ -1,8 +1,17 @@
 <?php
 
 	require_once($fullPath.'/classes/dbConn.class.php');
+	require_once($fullPath.'/classes/pdoConn.class.php');
 
 	class blogTools {
+
+    private $pdoConn;
+
+    function __construct() {
+
+      $this->pdoConn = new pdoConn();
+
+    }
 
 		public function newPost($title, $body) {
 
@@ -32,23 +41,31 @@
 
 		public function getBlogPost($blogPostID) {
 
-			$db = new dbConn();
+      $fields = array("aU.adminUser","title","body","dateCreated","b.blogPostID");
+      $tables = array("adminUsers aU","blog b");
 
-			$result = $db->selectWhere("adminUsers.adminUser, title, body, dateCreated, blog.blogPostID","adminUsers, blog", "blogPostID=".$blogPostID." and blog.adminID = adminUsers.adminID",0);
+      $where[0]['column'] = "blogPostID";
+      $where[0]['value'] = $blogPostID;
 
-			$row = $result->fetch_assoc();
-			
-			return $row;
+      $where[1]['column'] = "b.adminID";
+      $where[1]['value'] = "aU.adminID";
+
+			$result = $this->pdoConn->select($fields,$tables,$where);
+
+			return $result[0];
 
 		}
 
 		public function renderLatestPosts($limit, $charLimit = 200) {
 
-			$db = new dbConn();
+      $field = "blogPostID";
+      $table = "blog";
+      $orderBy = "dateCreated DESC";
+      $limit = $limit;
 
-			$latestPosts = $db->mysqli->query("SELECT blogPostID FROM blog ORDER BY dateCreated DESC LIMIT ".$limit);	
+			$latestPosts = $this->pdoConn->select($field,$table,NULL,$orderBy,$limit);	
 		
-			if(!$latestPosts) {
+			if(count($latestPosts) == 0) {
 
 				return "No blog posts created yet!<br />";
 
@@ -58,7 +75,7 @@
 
 				$output = "";	
 
-				while ($row = $latestPosts->fetch_assoc()) {
+        foreach($lastestPosts as $row) {
 
 					$blogPost = $this->getBlogPost($row['blogPostID']);
 
@@ -128,8 +145,6 @@ EOD;
 
 		public function renderDateLinks($numMonths) {
 
-			$db = new dbConn();
-
 			$nextMonth = date("n",time()) + 1;
 			$currentYear = date("Y",time());
 
@@ -138,30 +153,43 @@ EOD;
 			for($i=1; $i<=$numMonths; $i++) {
 	
 				$monthTime = mktime(0,0,0,$nextMonth,1,$currentYear);
-				$originalMonth = date("F", mktime(0,0,0,($nextMonth-1),1,$currentYear));
+			  $originalMonth = date("F", mktime(0,0,0,($nextMonth-1),1,$currentYear));
 				
-				if ($nextMonth == 1) {
+		  	if ($nextMonth == 1) {
 
-					$nextMonth = 12;
-					$currentYear--;
+			  	$nextMonth = 12;
+				  $currentYear--;
 
-				} else {
+  			} else {
 
-					$nextMonth--;
+	  			$nextMonth--;
 
-				}
+		  	}
 
-				$previousMonth = mktime(0,0,0,$nextMonth,1,$currentYear);
+			  $previousMonth = mktime(0,0,0,$nextMonth,1,$currentYear);
 
-				$result = $db->selectWhere('COUNT(*) as "postCount"','blog','dateCreated > '.$previousMonth.' AND dateCreated <= '.$monthTime.'',0);
+        $field = "COUNT(*) as postCount";
+        $table = "blog";
+
+        $where[0]['column'] = "dateCreated";
+        $where[0]['operator'] = ">";
+        $where[0]['value'] = $previousMonth;
+
+        $where[1]['column'] = "dateCreated";
+        $where[1]['operator'] = "<=";
+        $where[1]['value'] = $monthTime;
+
+  		  $result = $this->pdoConn->select($field,$table,$where);
 			
-				$row = $result->fetch_assoc();
+        foreach($result as $row) {
 
-				$dateLinksHTML .= "<li><a href=''>".$originalMonth." (".$row['postCount'].")</a></li>";
+  	  		$dateLinksHTML .= "<li><a href=''>".$originalMonth." (".$row['postCount'].")</a></li>";
 
-			}
+		    }
 
-			$dateLinksHTML .= "</ul>";
+      }
+
+	  	$dateLinksHTML .= "</ul>";
 
 			echo($dateLinksHTML);
 
@@ -169,13 +197,14 @@ EOD;
 
 		public function renderPostList() {
 
-			$db = new dbConn();
+      $fields = array("blogPostID","title");
+      $table = "blog";
 
-	    $result = $db->select("blogPostID, title","blog", 0);
+	    $result = $this->pdoConn->select($fields,$table);
 
 	    $render = "<select name='postSelection'>\n";
 
-	    while ($resultArray=$result->fetch_array(MYSQLI_ASSOC)) {
+      foreach($result as $resultArray) {
 
 	      $render .= "<option value='".$resultArray['blogPostID']."'>".$resultArray['title']."</option>\n";
 
@@ -189,21 +218,37 @@ EOD;
 
 		public function getPostContent($postID) {
 
-			$db = new dbConn();
+      $fields = array("title","body");
+      $table = "blog";
+      
+      $where[0]['column'] = "blogPostID";
+      $where[0]['value'] = $postID;
 
-			$result = $db->selectWhere("title,body","blog","blogPostID=".$postID."",0);
+			$result = $this->pdoConn->select($fields,$table,$where);
 
-			return $result->fetch_assoc();
+			return $result[0];
 
 		}
 
 		public function updatePost($postID,$title,$body) {
 
-			$db = new dbConn();
+      $table = "blog";
+      
+      $set[0]['column'] = "title";
+      $set[0]['value'] = $title;
 
-			$body = addslashes($body);
+      $set[1]['column'] = "body";
+      $set[1]['value'] = $body;
 
-			return $db->update("blog","title='".$title."',body='".$body."',dateUpdated=".time()."","blogPostID=".$postID."",0);
+      $set[2]['column'] = "dateUpdated";
+      $set[2]['value'] = time();
+
+      $where[0]['column'] = "blogPostID";
+      $where[0]['value'] = $postID;
+
+      $updateReturn = $this->pdoConn->update($table,$set,$where);
+
+      return $updateReturn['error'];
 
 		}
 
