@@ -47,11 +47,8 @@
       $where[0]['column'] = "blogPostID";
       $where[0]['value'] = $blogPostID;
 
-      $where[1]['column'] = "b.adminID";
-      $where[1]['value'] = "aU.adminID";
-
 			$result = $this->pdoConn->select($fields,$tables,$where);
-			
+
       return $result[0];
 
 		}
