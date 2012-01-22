@@ -22,7 +22,7 @@
 
 			$admin = unserialize($_SESSION['admin']);
 
-			if($db->insert(	"blog",
+			if($db->insert(	"blog_posts",
 											"adminID,dateCreated,title,body",
 											"".$admin->getID().",".time().",'".$title."','".$body."'",
 											0
@@ -42,7 +42,7 @@
 		public function getBlogPost($blogPostID) {
 
       $fields = array("aU.adminUser","title","body","dateCreated","b.blogPostID");
-      $tables = array("adminUsers aU","blog b");
+      $tables = array("adminUsers aU","blog_posts b");
 
       $where[0]['column'] = "blogPostID";
       $where[0]['value'] = $blogPostID;
@@ -59,7 +59,7 @@
 		public function renderLatestPosts($limit, $charLimit = 200) {
 
       $field = "blogPostID";
-      $table = "blog";
+      $table = "blog_posts";
       $orderBy = "dateCreated DESC";
       $limit = $limit;
 
@@ -169,7 +169,7 @@ EOD;
 			  $previousMonth = mktime(0,0,0,$nextMonth,1,$currentYear);
 
         $field = "COUNT(*) as postCount";
-        $table = "blog";
+        $table = "blog_posts";
 
         $where[0]['column'] = "dateCreated";
         $where[0]['operator'] = ">";
@@ -198,7 +198,7 @@ EOD;
 		public function renderPostList() {
 
       $fields = array("blogPostID","title");
-      $table = "blog";
+      $table = "blog_posts";
 
 	    $result = $this->pdoConn->select($fields,$table);
 
@@ -219,7 +219,7 @@ EOD;
 		public function getPostContent($postID) {
 
       $fields = array("title","body");
-      $table = "blog";
+      $table = "blog_posts";
       
       $where[0]['column'] = "blogPostID";
       $where[0]['value'] = $postID;
@@ -232,7 +232,7 @@ EOD;
 
 		public function updatePost($postID,$title,$body) {
 
-      $table = "blog";
+      $table = "blog_posts";
       
       $set[0]['column'] = "title";
       $set[0]['value'] = $title;
@@ -256,7 +256,7 @@ EOD;
 
 			$db = new dbConn();
 
-			return $db->delete("blog","blogPostID=".$postID."",0);
+			return $db->delete("blog_posts","blogPostID=".$postID."",0);
 
 		}
 
