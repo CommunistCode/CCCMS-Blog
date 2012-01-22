@@ -51,8 +51,8 @@
       $where[1]['value'] = "aU.adminID";
 
 			$result = $this->pdoConn->select($fields,$tables,$where);
-
-			return $result[0];
+			
+      return $result[0];
 
 		}
 
@@ -74,8 +74,8 @@
 			else {
 
 				$output = "";	
-
-        foreach($lastestPosts as $row) {
+        
+        foreach($latestPosts as $row) {
 
 					$blogPost = $this->getBlogPost($row['blogPostID']);
 
