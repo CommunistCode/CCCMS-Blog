@@ -77,13 +77,19 @@
       $name = "blog_comments";
       
       $column[0]['name'] = "commentID";
-      $column[0]['definition'] = "INT";
+      $column[0]['definition'] = "INT AUTO_INCREMENT";
 
       $column[1]['name'] = "memberID";
       $column[1]['definition'] = "INT";
 
       $column[2]['name'] = "commentText";
       $column[2]['definition'] = "TEXT";
+
+      $column[3]['name'] = "blogPostID";
+      $column[3]['definition'] = "INT";
+
+      $column[4]['name'] = "commentDate";
+      $column[4]['definition'] = "INT";
 
       $primaryKey = "commentID";
 
