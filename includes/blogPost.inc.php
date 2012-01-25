@@ -8,43 +8,29 @@
 
 ?>
 
-<table class='blogTable'>
-  
-  <tr>
-    <td><h1><a href='blogPost.php?blogPostID=<?php echo($blogArray['blogPostID']); ?>'><?php echo($blogArray['title']); ?></a></h1></td>
-    <td><h2><i>Posted by:</i> <strong><?php echo($blogArray['adminUser']); ?></strong></h2></td>
-  </tr>
-          
-  <tr>
-    <td class='date'><h3><?php echo($dateCreated); ?><h3></td>
-  </tr>
-    
-  <tr>  
-    <td colspan=2><div class='blogText'><?php echo($blogBody); ?></div></td>
-  </tr>
+<div class='blogPost'>
 
-</table>
+  <div class='author'><i>Posted by: </i><strong><?php echo($blogArray['adminUser']); ?></strong></div>
+  <div class='date'><i>Posted On: </i><strong><?php echo($dateCreated); ?></strong></div>
+  <div class='text'><?php echo($blogBody); ?></div>
+
+</div>
 
 <form method='post' action='blogPost.php?blogPostID=<?php echo($_GET['blogPostID']); ?>'>
 
   <input type='hidden' name='blogPostID' value="<?php echo($_GET['blogPostID']); ?>" />
 
-  <table class='blogTable'>
+  <div class='postComment'>
 
-    <tr>
-      <td><h3>Post Comment:</h3></td>
-    </tr>
+    <h3>Post Comment:</h3>
 
-    <tr>
-      <td colspan=2><textarea class='commentTextarea' name='comment'>Make a comment on this blog post!</textarea></td>
-    </tr>
+    <textarea name='comment'>Make a comment on this blog post!</textarea>
+    
+    <input name='submitComment' type='submit' value='Post Comment' />
 
-    <tr>
-      <td></td>
-      <td class='commentButton'><input name='submitComment' type='submit' value='Post Comment' /></td>
-    </tr>
-        
-  </table>
+    <div class='clear'></div>
+
+  </div>
 
 </form>
 
