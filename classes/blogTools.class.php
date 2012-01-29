@@ -164,23 +164,21 @@
 
 			$string = <<<EOD
 
-
-<table class='blogTable'>
-  
-  <tr>
-    <td><h1><a href='blogPost.php?blogPostID={$blogArray['blogPostID']}'>{$blogArray['title']}</a></h1></td>
-    <td><h2><i>Posted by:</i> <strong>{$blogArray['adminUser']}</strong></h2></td>
-  </tr>
-          
-  <tr>
-    <td class='date'><h3>{$dateCreated}<h3></td>
-  </tr>
-    
-  <tr>  
-    <td colspan=2><div class='blogText'><p>{$blogBody}</p></div></td>
-  </tr>
-
-</table>
+<div class='blogPreview'>
+  <div class='heading'>
+    <div class='left'>
+      <a href='blogPost.php?blogPostID={$blogArray['blogPostID']}'>{$blogArray['title']}</a>
+    </div>
+    <div class='right'>
+      <h2><i>Posted by:</i> <strong>{$blogArray['adminUser']}</strong></h2>
+      <h3>{$dateCreated}</h3></td>
+    </div>
+  </div>
+  <div class='clear'></div>
+  <div class='text'>
+    <p>{$blogBody}</p>
+  </div>
+</div>
 
 EOD;
 
