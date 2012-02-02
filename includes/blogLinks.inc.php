@@ -1,4 +1,4 @@
-Past Posts:	<br />
+<div class='linkHeader linkHeaderTop'>Past Posts:</div>
 
 <?php
 
