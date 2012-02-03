@@ -290,7 +290,7 @@ EOD;
       $where[0]['value'] = $postID;
 
       $updateReturn = $this->pdoConn->update($table,$set,$where);
-
+      
       return $updateReturn['error'];
 
 		}
