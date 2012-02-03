@@ -14,7 +14,7 @@
 
 	if (isset($_POST['updatePost'])) {
 				
-		if ($blogTools->updatePost($_POST['postSelection'],$_POST['title'],$_POST['text'])) {
+		if (!$blogTools->updatePost($_POST['postSelection'],$_POST['title'],$_POST['text'])) {
 			
       $content = "<p><font color='green'>Succesful update!</font></p>";
   
