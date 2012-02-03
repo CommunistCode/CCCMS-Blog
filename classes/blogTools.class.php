@@ -167,7 +167,7 @@
 <div class='blogPreview'>
   <div class='heading'>
     <div class='left'>
-      <a href='blogPost.php?blogPostID={$blogArray['blogPostID']}'>{$blogArray['title']}</a>
+      <a class='linkHeader' href='blogPost.php?blogPostID={$blogArray['blogPostID']}'>{$blogArray['title']}</a>
     </div>
     <div class='right'>
       <h2><i>Posted by:</i> <strong>{$blogArray['adminUser']}</strong></h2>
