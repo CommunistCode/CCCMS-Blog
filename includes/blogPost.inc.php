@@ -22,8 +22,6 @@
 
   <div class='postComment'>
 
-    <h3>Post Comment:</h3>
-
     <textarea name='comment'>Make a comment on this blog post!</textarea>
     
     <input name='submitComment' type='submit' value='Post Comment' />
