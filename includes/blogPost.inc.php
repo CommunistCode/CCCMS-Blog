@@ -22,6 +22,8 @@
 
   <div class='postComment'>
 
+    <?php if (!isset($_SESSION['member'])) { echo("<h3>You are posting as Anonymous</h3>"); } ?>
+    
     <textarea name='comment'>Make a comment on this blog post!</textarea>
     
     <input name='submitComment' type='submit' value='Post Comment' />
