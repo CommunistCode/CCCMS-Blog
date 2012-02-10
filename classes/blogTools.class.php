@@ -242,8 +242,9 @@ EOD;
 
       $fields = array("blogPostID","title");
       $table = "blog_posts";
+      $orderBy = "dateCreated DESC";
 
-	    $result = $this->pdoConn->select($fields,$table);
+	    $result = $this->pdoConn->select($fields,$table,NULL,$orderBy);
 
 	    $render = "<select name='postSelection'>\n";
 
