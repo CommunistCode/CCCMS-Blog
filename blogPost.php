@@ -12,10 +12,11 @@
   if (isset($_POST['submitComment'])) {
 
     $blogTools->newComment($_POST['blogPostID'],$_POST['comment']);
-    header("Location: ".$_SERVER['PHP_SELF']."?blogPostID=".$_GET['blogPostID']);
+//    header("Location: ".$_SERVER['PHP_SELF']."?blogPostID=".$_GET['blogPostID']);
 
   }
 
+	$title = "Blog : ". $blogArray['title'];
 	$heading = $blogArray['title'];
 	$include = "includes/blogPost.inc.php";
 
