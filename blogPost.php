@@ -16,7 +16,7 @@
 
   }
 
-	$title = "Blog : ". $blogArray['title'];
+	$pageTitle = $blogArray['title'];
 	$heading = $blogArray['title'];
 	$include = "includes/blogPost.inc.php";
 
