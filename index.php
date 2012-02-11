@@ -7,6 +7,7 @@
 
 	$blogTools = new blogTools();
 
+  $pageTitle = "Blog";
 	$heading = "Recent Blog Posts";
 	$content = $blogTools->renderLatestPosts(10); 
 
