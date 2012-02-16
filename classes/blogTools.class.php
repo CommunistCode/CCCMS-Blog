@@ -44,9 +44,21 @@
 
       } 
 
-      $result = $db->insert("blog_comments",
-                            "memberID,commentText,blogPostID,commentDate",
-                            "".$memberID.",'".$commentText."',".$blogPostID.",".time());
+      $table = "blog_comments";
+
+      $insertArray[0]['field'] = "memberID";
+      $insertArray[0]['value'] = $memberID;
+
+      $insertArray[1]['field'] = "commentText";
+      $insertArray[1]['value'] = $commentText;
+
+      $insertArray[2]['field'] = "blogPostID";
+      $insertArray[2]['value'] = $blogPostID;
+
+      $insertArray[3]['field'] = "commentDate";
+      $insertArray[3]['value'] = time();
+
+      $result = $this->pdoConn->insert($table,$insertArray);
 
       if (!$result) {
 
