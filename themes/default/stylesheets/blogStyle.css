@@ -80,8 +80,7 @@
 .postComment {
   position: relative;
   background: #EDEDED;
-  width: 700px;
-  padding: 10px;
+  width: 720px;
   margin: 0px 0px 10px 0px;
 }
 
@@ -98,8 +97,12 @@
   position: static;
   float: left;
   color: grey;
-  width: 100%;
-  margin: 10px 0px;
+  width: 700px;
+  margin: 10px 10px;
+}
+
+.postComment input {
+  margin: 0px 0px 10px 10px;
 }
 
 .postComment .clear {
@@ -111,8 +114,8 @@
   background: #EDEDED;
   border-bottom: solid 1px grey;
   border-top: solid 1px grey;
-  width: 700px;
-  padding: 10px;
+  width: 720px;
+  padding: 10px 0px 10px 0px;
   margin: 0px 0px 10px 0px;
 }
 

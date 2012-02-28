@@ -4,7 +4,7 @@
 
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
-		<title><?php echo($title); ?> : Blog</title>
+		<title><?php echo($title." : ".$pageTitle); ?></title>
 
     <link href="../themes/<?php echo($pageTools->getTheme("base")); ?>/stylesheets/cssReset.css" rel="stylesheet" />
     <link href="../themes/<?php echo($pageTools->getTheme("base")); ?>/stylesheets/base.css" rel="stylesheet" />
@@ -33,6 +33,8 @@
 				?>
 	
   		</div>
+      
+      <div class='clear'></div>
 
 			<div id='body'>
 
