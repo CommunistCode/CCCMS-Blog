@@ -7,7 +7,7 @@
 
   $dateCreated = date("F j, Y (H:m)", $_blogArray['dateCreated']);
 
-  $blogBody = $pageTools->matchTags($_blogArray['body']);
+  $blogBody = "<div id='matchTags'>".$pageTools->matchTags($blogArray['body'])."</div>";
 
 ?>
 

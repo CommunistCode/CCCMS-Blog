@@ -118,7 +118,7 @@
     
       if(count($latestPosts) == 0) {
 
-        return "No blog posts created yet!<br />";
+        return "<br />No blog posts created yet!<br />";
 
       }
 
