@@ -1,8 +1,5 @@
 <?php
 
-  require_once($fullPath.'/classes/dbConn.class.php');
-  require_once($fullPath.'/classes/pdoConn.class.php');
-
   class blogTools {
 
     private $pdoConn;

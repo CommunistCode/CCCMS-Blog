@@ -1,16 +1,19 @@
 <?php
 
-  require_once($fullPath."/membership/classes/memberTools.class.php");
+  require_once(FULL_PATH."/membership/classes/memberTools.class.php");
 
-  $dateCreated = date("F j, Y (H:m)", $blogArray['dateCreated']);
+  $pageTools = new pageTools();
+  $blogTools = new blogTools();
 
-  $blogBody = $pageTools->matchTags($blogArray['body']);
+  $dateCreated = date("F j, Y (H:m)", $_blogArray['dateCreated']);
+
+  $blogBody = $pageTools->matchTags($_blogArray['body']);
 
 ?>
 
 <div class='blogPost'>
 
-  <div class='author'><i>Posted by: </i><strong><?php echo($blogArray['adminUser']); ?></strong></div>
+  <div class='author'><i>Posted by: </i><strong><?php echo($_blogArray['adminUser']); ?></strong></div>
   <div class='date'><i>Posted On: </i><strong><?php echo($dateCreated); ?></strong></div>
   <div class='text'><?php echo($blogBody); ?></div>
 

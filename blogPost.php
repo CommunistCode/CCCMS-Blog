@@ -1,25 +1,21 @@
 <?php
 
-	require_once("../config/config.php");
-	require_once($fullPath."/classes/pageTools.class.php");
-  require_once($fullPath."/membership/classes/member.class.php");
-	require_once($fullPath."/blog/classes/blogTools.class.php");
-	require_once($fullPath."/includes/global.inc.php");
+	require_once("includes/blogGlobal.inc.php");
+  require_once(FULL_PATH."/membership/classes/member.class.php");
 
-	$blogTools = new blogTools();
 	$blogArray = $blogTools->getBlogPost($_GET['blogPostID']);
 
   if (isset($_POST['submitComment'])) {
 
     $blogTools->newComment($_POST['blogPostID'],$_POST['comment']);
-//    header("Location: ".$_SERVER['PHP_SELF']."?blogPostID=".$_GET['blogPostID']);
+    header("Location: ".$_SERVER['PHP_SELF']."?blogPostID=".$_GET['blogPostID']);
 
   }
 
-	$pageTitle = $blogArray['title'];
-	$heading = $blogArray['title'];
-	$include = "includes/blogPost.inc.php";
+  $page->set("title",$blogArray['title']);
+  $page->set("heading",$blogArray['title']);
 
-	require_once($fullPath."/blog/themes/".$pageTools->getTheme("blog")."/templates/template.inc.php");
+	$page->addInclude("includes/blogPost.inc.php",array("blogArray"=>$blogArray));
+  $page->render("corePage.inc.php");
 
 ?>
