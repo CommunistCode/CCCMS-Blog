@@ -1,60 +1,153 @@
-.blogBody {
-	float: right;	
-	padding: 10px 20px 0px 10px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  width: 740px;
+.blogPreview {
+  background: #EDEDED;
+  margin: 20px 0px 0px 0px;
+  padding: 10px 10px 10px 10px;
+  width: 700px;
+}
+
+.blogPreview h2 {
+  font-size: 15px;
+}
+
+.blogPreview .heading {
+  width: 700px;
+}
+
+.blogPreview .heading .left {
+  float: left;
+  height: 40px;
+}
+
+.blogPreview .heading .right {
+  float: right;
+  width: 225px;
+  height: 40px;
+}
+
+.blogPreview .text {
+  width: 700px;
+  margin: 10px 0px 0px 0px;
+  background: white;
+  border: 1px solid grey;
+}
+
+.blogPreview .text p {
+  margin: 10px 10px 10px 10px;
+  font-size: 12px;
+}
+
+.blogPreview .linkHeader {
+  float: left;
+  font-size: 15px;
+  line-height: 40px;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.blogPreview h2, h3 {
+  float: right;
+  width: 190px;
+  font-size: 12px;
+  text-align: right;
+  padding: 0px;
+  margin: 0px;
+}
+
+.blogPreview .clear {
+  clear:both;
+}
+
+.blogPost {
+}
+
+.blogPost .date {
+  margin: 10px 0px 0px 0px;
+}
+
+.blogPost .author {
+  float: right;
+}
+
+.blogPost .text {
+/*	background: #eaf3e9; */
+  border: 1px solid grey;
+	text-align: justify;
+	padding: 10px 10px 10px 10px;
+	margin: 10px 0px;
+}
+
+.postComment {
+  position: relative;
+  background: #EDEDED;
+  width: 720px;
+  margin: 0px 0px 10px 0px;
+}
+
+.postComment h3 {
+  position: static;
+  float: left;
+  font-size: 12px;
+  margin: 0px 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.postComment textarea {
+  position: static;
+  float: left;
+  color: grey;
+  width: 700px;
+  margin: 10px 10px;
+}
+
+.postComment input {
+  margin: 0px 0px 10px 10px;
+}
+
+.postComment .clear {
+  clear: both;
+}
+
+.blogComment {
+  position: relative;
+  background: #EDEDED;
+  border-bottom: solid 1px grey;
+  border-top: solid 1px grey;
+  width: 720px;
+  padding: 10px 0px 10px 0px;
+  margin: 0px 0px 10px 0px;
+}
+
+.blogComment .date {
+  position: relative;
+  float: left;
+  text-align: center;
+  height: 20px;
+  margin: 0px 0px 0px 0px;
+}
+
+.blogComment .poster {
+  position: relative;
+  float: left;
+  width: 100px;
+  height: 75px;
+  border: 1px solid grey;
+  padding: 5px;
+  background: white;
+  margin: 5px 0px 0px 0px;
+}
+
+.blogComment .comment {
+  position: relative;
+  float: right;
+  width: 545px;
+  min-height: 80px;
+  padding: 15px;
+/*  border: 1px solid grey;*/
   background: white;
 }
 
-.blogLinks {
-  float: left;
-  padding: 10px 10px 10px 10px;
-  width: 110px;
-  background: #6ac857;
-}
-
-#blogPost {
-	padding: 10px 10px 10px 10px;
-	margin: 0px 0px 10px 0px;
-	background: #EDEDED;
-	border: 1px solid grey;
-}
-
-/* Blog title */
-#blogPost h1 {
-	font-size: 15px;
-	padding: 0px;
-	margin: 0px;
-	border: 0px;
-}
-
-/* username */
-#blogPost h2 {
-	text-align: right;
-	font-size: 10px;
-	font-weight: normal;
-	padding: 0px 15px 0px 0px;
-	margin: 0px;
-}
-
-/* date */
-#blogPost h3 {
-padding: 0px 10px 0px 0px;
-	font-size: 8pt;
-	font-style: italic;
-	padding: 0px;
-	margin: 0px;
-}
-
-/* text */
-#blogPost .blogText {
-	background: white;
-	text-align: justify;
-	font-size: 10pt;
-	padding: 10px;
-	margin: 10px 10px 0px 0px;
-	border: 1px solid grey;
+.blogComment .clear {
+  clear: both;
 }

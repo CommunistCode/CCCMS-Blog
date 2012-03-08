@@ -1,16 +1,12 @@
 <?php
 
-	require_once("../config/config.php");
-	require_once($fullPath."/classes/pageTools.class.php");
-	require_once($fullPath."/blog/classes/blogTools.class.php");
-	require_once($fullPath."/includes/global.inc.php");
+	require_once("includes/blogGlobal.inc.php");
 
-	$blogTools = new blogTools();
+  $page->set("title","Blog");
+  $page->set("heading","Recent Blog Posts");
+  
+	$page->addContent($blogTools->renderLatestPosts(10));
 
-  $pageTitle = "Blog";
-	$heading = "Recent Blog Posts";
-	$content = $blogTools->renderLatestPosts(10); 
-
-	require_once($fullPath."/blog/themes/".$pageTools->getTheme("blog")."/templates/template.inc.php");
+  $page->render("corePage.inc.php");
 
 ?>
