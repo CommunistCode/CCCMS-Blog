@@ -124,7 +124,7 @@
   float: left;
   text-align: center;
   height: 20px;
-  margin: 0px 0px 0px 0px;
+  margin: -2px 0px 0px 10px;
 }
 
 .blogComment .poster {
@@ -146,6 +146,7 @@
   padding: 15px;
 /*  border: 1px solid grey;*/
   background: white;
+  margin: 0px 10px 0px 0px;
 }
 
 .blogComment .clear {
