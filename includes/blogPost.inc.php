@@ -65,7 +65,7 @@
       echo("<div class='blogComment'>");
         echo("<div class='date'>".$datePosted."<br />");
         echo("<div class='poster'>".$username."</div></div>");
-        echo("<div class='comment'>".$comment['commentText']."</div>");
+        echo("<div class='comment'>".nl2br($comment['commentText'])."</div>");
         echo("<div class='clear'></div>");
       echo("</div>");
 
