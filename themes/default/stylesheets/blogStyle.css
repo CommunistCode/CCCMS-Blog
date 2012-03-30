@@ -140,11 +140,11 @@
 
 .blogComment .comment {
   position: relative;
+  font-size: 12px;
   float: right;
   width: 545px;
   min-height: 80px;
   padding: 15px;
-/*  border: 1px solid grey;*/
   background: white;
   margin: 0px 10px 0px 0px;
 }
