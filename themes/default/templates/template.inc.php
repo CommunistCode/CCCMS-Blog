@@ -4,7 +4,7 @@
 
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
-		<title><?php echo($title." : ".$pageTitle); ?></title>
+		<title><?php echo(SITE_NAME." : ".$_title); ?></title>
 
     <link href="../base/themes/<?php echo($_pageTools->getTheme("base")); ?>/stylesheets/cssReset.css" rel="stylesheet" />
     <link href="../base/themes/<?php echo($_pageTools->getTheme("base")); ?>/stylesheets/base.css" rel="stylesheet" />
