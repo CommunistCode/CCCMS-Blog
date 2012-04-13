@@ -1,16 +1,11 @@
 <?php 
 
-	require_once("../../config/config.php");
-	require_once($fullPath."/admin/includes/global.inc.php");
-	require_once($fullPath."/admin/includes/checkLogin.inc.php");
-	require_once($fullPath."/classes/pageTools.class.php");
-	require_once($fullPath."/blog/classes/blogTools.class.php");
+  require_once("includes/blogAdminGlobal.inc.php");
 
-	$blogTools = new blogTools();
   $pageTools = new pageTools();
 
-  $title = "Admin Area : Update Blog Post";
-  $heading = "Update Blog Post";
+  $page->set("title","Update Blog Post");
+  $page->set("heading","Update Blog Post");
 
 	if (isset($_POST['updatePost'])) {
 				
@@ -28,13 +23,12 @@
   
   }	else if (isset($_POST['postSelection'])) {
 		
-		$pageTools = new pageTools();
-		
 		$blogPost = $blogTools->getPostContent($_POST['postSelection']);
 		
-		$tags = include($fullPath."/admin/includes/showTags.inc.php");
+    $page->addInclude(FULL_PATH."/admin/includes/showTags.inc.php",array("adminTools"=>$adminTools));
+
+    $content = "";
 	
-    $content = $tags;	
 		$content .= "<p>Your are currently editing <strong>".$blogPost['title']."</strong></p>\n";
 		$content .= "<form method='post' action='updatePost.php' name='editPage'>\n";
 		$content .= "<table>\n";
@@ -65,6 +59,7 @@
 
 	}
 
-  require_once($fullPath."/admin/themes/".$pageTools->getTheme("admin")."/templates/corePage.inc.php");
+  $page->addContent($content);
+  $page->render("corePage.inc.php");
 
 ?>
