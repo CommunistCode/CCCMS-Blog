@@ -16,6 +16,6 @@
   $page->set("heading",$blogArray['title']);
 
 	$page->addInclude("includes/blogPost.inc.php",array("blogArray"=>$blogArray));
-  $page->render("template.inc.php");
+  $page->render("corePage.inc.php");
 
 ?>

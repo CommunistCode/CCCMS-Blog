@@ -9,6 +9,6 @@
   
 	$page->addContent($blogTools->renderLatestPosts(10));
 
-  $page->render("template.inc.php");
+  $page->render("corePage.inc.php");
 
 ?>
