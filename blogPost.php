@@ -5,7 +5,7 @@
 
 	$blogArray = $blogTools->getBlogPost($_GET['blogPostID']);
 
-  if (isset($_POST['submitComment'])) {
+  if (isset($_POST['submitComment']) && strtolower($_POST['spamTest']) == "no") {
 
     $blogTools->newComment($_POST['blogPostID'],$_POST['comment']);
     header("Location: ".$_SERVER['PHP_SELF']."?blogPostID=".$_GET['blogPostID']);

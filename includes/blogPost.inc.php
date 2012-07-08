@@ -29,6 +29,8 @@
     
     <textarea name='comment'>Make a comment on this blog post!</textarea>
     
+    <strong>Spam Test: </strong>Yes/No, Is the Raspberry Pi edible? <input type='text' name='spamTest'>
+    
     <input name='submitComment' type='submit' value='Post Comment' />
 
     <div class='clear'></div>
